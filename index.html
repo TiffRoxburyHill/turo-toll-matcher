@@ -1223,7 +1223,7 @@ async function createInvoiceDocx(templateArrayBuffer, matchData) {
   if (headerRowIdx >= 0) {
     // Find all data rows after header that are in the same table (before </w:tbl>)
     const tblEndPos = docXml.indexOf('</w:tbl>', allRows[headerRowIdx].end);
-    const dataRows = allRows.filter(r => r.start > allRows[headerRowIdx].end && r.start < tblEndPos);
+    const dataRows = allRows.filter(r => r.start >= allRows[headerRowIdx].end && r.start < tblEndPos);
 
     if (dataRows.length > 0) {
       // Get a sample data row to clone formatting from
